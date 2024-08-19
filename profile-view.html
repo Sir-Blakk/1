@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Love - View Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #ff6b81;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+
+        .profile-view-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .profile-view-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .profile-view-container h2 {
+            font-size: 2rem;
+            color: #ff4757;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .profile-details {
+            margin-bottom: 20px;
+        }
+
+        .profile-details h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .profile-details p {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        footer {
+            background-color: #2f3542;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #ff4757;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #e84118;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Black Love</h1>
+        <p>View Profile</p>
+    </header>
+
+    <div class="profile-view-container">
+        <img src="profile1.jpg" alt="Profile Picture">
+        <h2>Jane Doe</h2>
+        <div class="profile-details">
+            <h3>Bio:</h3>
+            <p>Hi! I'm Jane, and I love outdoor adventures, reading, and cooking.</p>
+        </div>
+        <div class="profile-details">
+            <h3>Interests:</h3>
+            <p>Hiking, Traveling, Photography</p>
+        </div>
+        <a href="match.html" class="back-button">Back to Matches</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Black Love. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+// In profile-view.html, add this script to dynamically load profile data
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const profileId = urlParams.get('profileId');
+
+    const profiles = {
+        "1": {
+            "name": "Jane Doe",
+            "bio": "Hi! I'm Jane, and I love outdoor adventures, reading, and cooking.",
+            "interests": "Hiking, Traveling, Photography",
+            "image": "profile1.jpg"
+        },
+        // Add more profiles as needed
+    };
+
+    if (profiles[profileId]) {
+        document.querySelector('h2').textContent = profiles[profileId].name;
+        document.querySelector('.profile-details p').textContent = profiles[profileId].bio;
+        document.querySelector('.profile-details + .profile-details p').textContent = profiles[profileId].interests;
+        document.querySelector('img').src = profiles[profileId].image;
+    }
+</script>

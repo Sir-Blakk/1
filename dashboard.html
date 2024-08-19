@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Love - User Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #ff6b81;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ff4757;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #e84118;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-header h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #ff4757;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .dashboard-nav a:hover {
+            background-color: #e84118;
+        }
+
+        .dashboard-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            background-color: #ff6b81;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+        }
+
+        .info-card p {
+            margin: 0;
+        }
+
+        footer {
+            background-color: #2f3542;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Black Love</h1>
+        <p>Welcome to Your Dashboard</p>
+    </header>
+
+    
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h2>User Dashboard</h2>
+            <button onclick="logout()">Logout</button>
+        </div>
+        
+
+        <div class="dashboard-nav">
+            <a href="profile.html">Profile</a>
+            <a href="encounter.html">Encounter</a>
+            <a href="messages.html">Messages</a> <!-- Link to messages.html -->
+            <a href="settings.html">Settings</a>
+            <a href="notifications.html">Notifications</a>
+        </div>
+
+        <div class="dashboard-info">
+            <div class="info-card">
+                <h3>Profile Completeness</h3>
+                <p>75% Complete</p>
+            </div>
+            <div class="info-card">
+                <h3>Recent Activity</h3>
+                <p>You liked 5 profiles and received 3 new messages.</p>
+            </div>
+            <div class="info-card">
+                <h3>New Matches</h3>
+                <p>You have 1 new matches!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Black Love. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'index.html';
+        }
+
+        // Ensure the Dashboard link is visible only when logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('loggedIn');
+            const navBar = document.getElementById('nav-bar');
+            if (isLoggedIn !== 'true') {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

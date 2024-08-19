@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Love - Messages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #ff6b81;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+
+        .messages-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .messages-container h2 {
+            font-size: 2rem;
+            color: #ff4757;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .message:hover {
+            background-color: #f1f1f1;
+        }
+
+        .message:last-child {
+            border-bottom: none;
+        }
+
+        .message .message-details {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .message .message-details h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .message .message-details p {
+            margin: 5px 0 0;
+            color: #555;
+        }
+
+        .message .message-details .timestamp {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .full-message {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .full-message h3 {
+            margin-top: 0;
+            color: #ff4757;
+        }
+
+        .full-message p {
+            color: #555;
+        }
+
+        .back-link {
+            color: #ff4757;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .back-button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            background-color: #ff4757;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #e84118;
+        }
+
+        footer {
+            background-color: #2f3542;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Black Love</h1>
+        <p>Your Messages</p>
+    </header>
+
+    <div class="messages-container">
+        <h2>Messages</h2>
+
+        <div class="message" onclick="openMessage(1)">
+            <div class="message-details">
+                <h3>Jane Doe</h3>
+                <p>Hello, I saw your profile and I'd love to connect!</p>
+                <span class="timestamp">2 hours ago</span>
+            </div>
+        </div>
+
+        <div class="message" onclick="openMessage(2)">
+            <div class="message-details">
+                <h3>Emily Smith</h3>
+                <p>Hi! Let's chat and get to know each other.</p>
+                <span class="timestamp">1 day ago</span>
+            </div>
+        </div>
+
+        <div id="full-message-1" class="full-message">
+            <h3>Message from Jane Doe</h3>
+            <p>Hello, I saw your profile and I'd love to connect! Let's chat more to see where this goes. Looking forward to hearing from you!</p>
+            <p class="timestamp">Sent: 2 hours ago</p>
+            <span class="back-link" onclick="closeMessage()">Back to Messages</span>
+        </div>
+
+        <div id="full-message-2" class="full-message">
+            <h3>Message from Emily Smith</h3>
+            <p>Hi! Let's chat and get to know each other. I really liked what I saw in your profile, and I think we could have a great conversation. What do you think?</p>
+            <p class="timestamp">Sent: 1 day ago</p>
+            <span class="back-link" onclick="closeMessage()">Back to Messages</span>
+        </div>
+
+        <div class="back-button-container">
+            <a href="dashboard.html" class="back-button">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Black Love. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function openMessage(id) {
+            document.querySelectorAll('.message').forEach(message => message.style.display = 'none');
+            document.getElementById('full-message-' + id).style.display = 'block';
+        }
+
+        function closeMessage() {
+            document.querySelectorAll('.message').forEach(message => message.style.display = 'block');
+            document.querySelectorAll('.full-message').forEach(message => message.style.display = 'none');
+        }
+    </script>
+</body>
+</html>
