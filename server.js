@@ -1,14 +1,11 @@
 const express = require('express');
 const mysql = require('mysql2');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 const app = express();
-const port = 3000;
-
-// Middleware
 app.use(bodyParser.json());
-app.use(cors());
 
 // Create a MySQL connection
 const db = mysql.createConnection({
@@ -18,28 +15,45 @@ const db = mysql.createConnection({
     database: 'blacklove'
 });
 
-db.connect(err => {
-    if (err) throw err;
-    console.log('MySQL Connected...');
-});
+// Register Route
+app.post('/register', async (req, res) => {
+    const { name, email, password } = req.body;
 
-// Routes
-app.get('/users', (req, res) => {
-    db.query('SELECT * FROM users', (err, results) => {
-        if (err) throw err;
-        res.json(results);
+    // Check if the email already exists
+    db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+        if (err) return res.status(500).send('Server error');
+        if (results.length > 0) return res.status(400).send('Email already in use');
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Insert new user
+        db.query('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, hashedPassword], (err, results) => {
+            if (err) return res.status(500).send('Server error');
+            res.status(201).send('User registered');
+        });
     });
 });
 
-app.post('/users', (req, res) => {
-    const { name, email, password, location, profile_picture } = req.body;
-    const query = 'INSERT INTO users (name, email, password, location, profile_picture) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [name, email, password, location, profile_picture], (err, results) => {
-        if (err) throw err;
-        res.json({ id: results.insertId });
+// Login Route
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    // Find user
+    db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+        if (err) return res.status(500).send('Server error');
+        if (results.length === 0) return res.status(400).send('Invalid email or password');
+
+        const user = results[0];
+
+        // Check password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).send('Invalid email or password');
+
+        // Create JWT token
+        const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1h' });
+        res.json({ token });
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+app.listen(3000, () => console.log('Server running on port 3000'));
