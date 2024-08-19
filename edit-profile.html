@@ -102,6 +102,20 @@
             background-color: #e84118;
         }
 
+        .interests-container {
+            margin-bottom: 20px;
+        }
+
+        .interests-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+
+        .interests-container input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
         .preview-container,
         .existing-photos-container {
             display: flex;
@@ -149,21 +163,66 @@
         <h2>Edit Your Profile</h2>
         <form id="edit-profile-form">
             <label for="full-name">Full Name</label>
-            <input type="text" id="full-name" name="full-name" value="John Doe" required>
+            <input type="text" id="full-name" name="full-name" required>
 
             <label for="bio">Bio</label>
-            <textarea id="bio" name="bio" rows="4" required>Hi, I'm John! I love hiking and reading.</textarea>
+            <textarea id="bio" name="bio" rows="4" required></textarea>
 
-            <label for="interests">Interests</label>
-            <input type="text" id="interests" name="interests" value="Hiking, Reading" required>
+            <label>Interests (Select 5 to 10)</label>
+            <div class="interests-container" id="interests-container">
+                <label><input type="checkbox" name="interests" value="Traveling"> Traveling</label>
+                <label><input type="checkbox" name="interests" value="Cooking"> Cooking</label>
+                <label><input type="checkbox" name="interests" value="Reading"> Reading</label>
+                <label><input type="checkbox" name="interests" value="Hiking"> Hiking</label>
+                <label><input type="checkbox" name="interests" value="Photography"> Photography</label>
+                <label><input type="checkbox" name="interests" value="Music"> Music</label>
+                <label><input type="checkbox" name="interests" value="Yoga"> Yoga</label>
+                <label><input type="checkbox" name="interests" value="Painting"> Painting</label>
+                <label><input type="checkbox" name="interests" value="Gardening"> Gardening</label>
+                <label><input type="checkbox" name="interests" value="Writing"> Writing</label>
+                <label><input type="checkbox" name="interests" value="Film and cinema"> Film and cinema</label>
+                <label><input type="checkbox" name="interests" value="Dancing"> Dancing</label>
+                <label><input type="checkbox" name="interests" value="Volunteering"> Volunteering</label>
+                <label><input type="checkbox" name="interests" value="Fitness and exercise"> Fitness and exercise</label>
+                <label><input type="checkbox" name="interests" value="Video games"> Video games</label>
+                <label><input type="checkbox" name="interests" value="DIY projects"> DIY projects</label>
+                <label><input type="checkbox" name="interests" value="Meditation"> Meditation</label>
+                <label><input type="checkbox" name="interests" value="Sports"> Sports</label>
+                <label><input type="checkbox" name="interests" value="Learning languages"> Learning languages</label>
+                <label><input type="checkbox" name="interests" value="History"> History</label>
+                <label><input type="checkbox" name="interests" value="Technology"> Technology</label>
+                <label><input type="checkbox" name="interests" value="Birdwatching"> Birdwatching</label>
+                <label><input type="checkbox" name="interests" value="Astrology"> Astrology</label>
+                <label><input type="checkbox" name="interests" value="Surfing"> Surfing</label>
+                <label><input type="checkbox" name="interests" value="Crafting"> Crafting</label>
+                <label><input type="checkbox" name="interests" value="Wine tasting"> Wine tasting</label>
+                <label><input type="checkbox" name="interests" value="Animals and pets"> Animals and pets</label>
+                <label><input type="checkbox" name="interests" value="Cooking new recipes"> Cooking new recipes</label>
+                <label><input type="checkbox" name="interests" value="Visiting museums"> Visiting museums</label>
+                <label><input type="checkbox" name="interests" value="Attending live performances"> Attending live performances</label>
+                <label><input type="checkbox" name="interests" value="Knitting or crocheting"> Knitting or crocheting</label>
+                <label><input type="checkbox" name="interests" value="Astronomy"> Astronomy</label>
+                <label><input type="checkbox" name="interests" value="Camping"> Camping</label>
+                <label><input type="checkbox" name="interests" value="Sculpting"> Sculpting</label>
+                <label><input type="checkbox" name="interests" value="Running"> Running</label>
+                <label><input type="checkbox" name="interests" value="Baking"> Baking</label>
+                <label><input type="checkbox" name="interests" value="Martial arts"> Martial arts</label>
+                <label><input type="checkbox" name="interests" value="Geocaching"> Geocaching</label>
+                <label><input type="checkbox" name="interests" value="Collecting (e.g., stamps, coins)"> Collecting (e.g., stamps, coins)</label>
+                <label><input type="checkbox" name="interests" value="Boat sailing"> Boat sailing</label>
+                <label><input type="checkbox" name="interests" value="Cycling"> Cycling</label>
+                <label><input type="checkbox" name="interests" value="Homebrewing"> Homebrewing</label>
+                <label><input type="checkbox" name="interests" value="Calligraphy"> Calligraphy</label>
+                <label><input type="checkbox" name="interests" value="Car restoration"> Car restoration</label>
+                <label><input type="checkbox" name="interests" value="Magic tricks"> Magic tricks</label>
+                <label><input type="checkbox" name="interests" value="Podcasting"> Podcasting</label>
+            </div>
 
             <label for="photos">Profile Photos</label>
             <input type="file" id="photos" name="photos" multiple accept="image/*">
 
             <div class="existing-photos-container" id="existing-photos-container">
-                <!-- Existing photos will be displayed here -->
-                <img src="path-to-existing-photo1.jpg" alt="Existing Photo 1">
-                <img src="path-to-existing-photo2.jpg" alt="Existing Photo 2">
+                <!-- No existing photos -->
             </div>
 
             <div class="preview-container" id="preview-container"></div>
@@ -202,6 +261,13 @@
 
         document.getElementById('edit-profile-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Check if the number of selected interests is within the limit
+            const selectedInterests = document.querySelectorAll('input[name="interests"]:checked');
+            if (selectedInterests.length < 5 || selectedInterests.length > 10) {
+                alert('Please select between 5 and 10 interests.');
+                return;
+            }
 
             // Simulate successful profile update
             localStorage.setItem('profileUpdated', 'true');

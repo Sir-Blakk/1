@@ -148,9 +148,17 @@
         document.getElementById('register-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
 
+            const password = document.getElementById('password').value;
+
+            // Check if password meets criteria
+            if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+                alert('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.');
+                return;
+            }
+
             // Simulate successful registration
             localStorage.setItem('loggedIn', 'true');
-            window.location.href = 'profile.html';
+            window.location.href = 'edit-profile.html';
         });
     </script>
 </body>

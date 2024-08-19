@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Recent Sign-Ups</title>
+</head>
+<body>
+    <h1>Recent Sign-Ups</h1>
+    <ul id="signups-list"></ul>
+
+    <script>
+        fetch('/admin/recent-signups')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('signups-list');
+                data.forEach(user => {
+                    const item = document.createElement('li');
+                    item.textContent = `${user.name} (${user.email})`;
+                    list.appendChild(item);
+                });
+            });
+    </script>
+</body>
+</html>
