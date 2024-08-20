@@ -117,9 +117,7 @@
     </header>
 
     <nav id="nav-bar">
-        <a href="index.html">Home</a>
         <a href="register.html">Sign Up</a>
-        <a href="login.html">Login</a>
         <!-- The Dashboard link will be shown here based on login status -->
     </nav>
 
@@ -142,24 +140,30 @@
 
     <script>
         document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-    
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
-    
-            const result = await response.json();
-            if (result.token) {
-                localStorage.setItem('token', result.token);
-                window.location.href = 'dashboard.html';
-            } else {
-                alert(result);
-            }
-        });
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
+
+    const result = await response.json();
+
+    // Log the result object to the console for debugging
+    console.log(result);
+
+    if (result.token) {
+        localStorage.setItem('token', result.token);
+        window.location.href = 'dashboard.html';
+    } else {
+        alert(result);
+    }
+});
+
+
     </script>
 </body>
 </html>
