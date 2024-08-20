@@ -7,18 +7,37 @@
 </head>
 <body>
     <h1>Recent Sign-Ups</h1>
+    <p id="loading-message">Loading...</p>
     <ul id="signups-list"></ul>
+    <p id="error-message" style="color: red;"></p>
 
     <script>
+        const list = document.getElementById('signups-list');
+        const loadingMessage = document.getElementById('loading-message');
+        const errorMessage = document.getElementById('error-message');
+
         fetch('/admin/recent-signups')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
-                const list = document.getElementById('signups-list');
-                data.forEach(user => {
-                    const item = document.createElement('li');
-                    item.textContent = `${user.name} (${user.email})`;
-                    list.appendChild(item);
-                });
+                loadingMessage.style.display = 'none'; // Hide loading message
+                if (data.length === 0) {
+                    list.innerHTML = '<li>No recent sign-ups.</li>';
+                } else {
+                    data.forEach(user => {
+                        const item = document.createElement('li');
+                        item.textContent = `${user.name} (${user.email})`;
+                        list.appendChild(item);
+                    });
+                }
+            })
+            .catch(error => {
+                loadingMessage.style.display = 'none'; // Hide loading message
+                errorMessage.textContent = `Error: ${error.message}`;
             });
     </script>
 </body>

@@ -14,13 +14,14 @@ CREATE TABLE Members (
     last_name VARCHAR(50),
     gender ENUM('Male', 'Female', 'Other'),
     date_of_birth DATE,
-    joined_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    joined_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (email)
 );
 
 -- Table to store members' profile information
 CREATE TABLE Profiles (
     profile_id INT AUTO_INCREMENT PRIMARY KEY,
-    member_id INT,
+    member_id INT UNIQUE,  -- Ensuring one-to-one relationship
     bio TEXT,
     interests TEXT,
     profile_picture VARCHAR(255),
@@ -42,7 +43,7 @@ CREATE TABLE Messages (
 -- Table to store member settings
 CREATE TABLE Settings (
     setting_id INT AUTO_INCREMENT PRIMARY KEY,
-    member_id INT,
+    member_id INT UNIQUE,
     receive_notifications BOOLEAN DEFAULT TRUE,
     receive_emails BOOLEAN DEFAULT TRUE,
     privacy_setting ENUM('Public', 'Private') DEFAULT 'Public',

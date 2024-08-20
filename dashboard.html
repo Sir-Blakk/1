@@ -66,9 +66,19 @@
             margin-bottom: 20px;
         }
 
-        .dashboard-header h2 {
-            font-size: 2rem;
-            margin: 0;
+        .dashboard-header button {
+            background-color: #ff4757;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dashboard-header button:hover {
+            background-color: #e84118;
         }
 
         .dashboard-nav {
@@ -137,19 +147,16 @@
         <p>Welcome to Your Dashboard</p>
     </header>
 
-    
-
     <div class="dashboard-container">
         <div class="dashboard-header">
             <h2>User Dashboard</h2>
             <button onclick="logout()">Logout</button>
         </div>
-        
 
         <div class="dashboard-nav">
             <a href="profile.html">Profile</a>
             <a href="encounter.html">Encounter</a>
-            <a href="messages.html">Messages</a> <!-- Link to messages.html -->
+            <a href="messages.html">Messages</a>
             <a href="settings.html">Settings</a>
             <a href="notifications.html">Notifications</a>
         </div>
@@ -165,7 +172,7 @@
             </div>
             <div class="info-card">
                 <h3>New Matches</h3>
-                <p>You have 1 new matches!</p>
+                <p>You have 1 new match!</p>
             </div>
         </div>
     </div>
@@ -176,14 +183,13 @@
 
     <script>
         function logout() {
+            localStorage.removeItem('token');
             localStorage.removeItem('loggedIn');
             window.location.href = 'index.html';
         }
 
-        // Ensure the Dashboard link is visible only when logged in
         document.addEventListener('DOMContentLoaded', function() {
             const isLoggedIn = localStorage.getItem('loggedIn');
-            const navBar = document.getElementById('nav-bar');
             if (isLoggedIn !== 'true') {
                 window.location.href = 'login.html';
             }

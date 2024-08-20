@@ -112,8 +112,12 @@
             font-weight: 400;
         }
 
-        .interests-container input[type="checkbox"] {
-            margin-right: 5px;
+        .interests-container select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
         }
 
         .preview-container,
@@ -167,7 +171,8 @@
 
             <label for="bio">Bio</label>
             <textarea id="bio" name="bio" rows="4" required></textarea>
-            <label for="interests">Interests (Select 5 to 10)</label>
+
+            <label for="interests">Interests</label>
             <select id="interests" name="interests" multiple required>
                 <option value="Traveling">Traveling</option>
                 <option value="Cooking">Cooking</option>
@@ -216,8 +221,6 @@
                 <option value="Magic tricks">Magic tricks</option>
                 <option value="Podcasting">Podcasting</option>
             </select>
-            
-            
 
             <label for="photos">Profile Photos</label>
             <input type="file" id="photos" name="photos" multiple accept="image/*">
@@ -262,13 +265,6 @@
 
         document.getElementById('edit-profile-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
-
-            // Check if the number of selected interests is within the limit
-            const selectedInterests = document.querySelectorAll('input[name="interests"]:checked');
-            if (selectedInterests.length < 5 || selectedInterests.length > 10) {
-                alert('Please select between 5 and 10 interests.');
-                return;
-            }
 
             // Simulate successful profile update
             localStorage.setItem('profileUpdated', 'true');
