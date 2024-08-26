@@ -19,6 +19,7 @@
             color: white;
             padding: 20px 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
@@ -29,6 +30,26 @@
         header p {
             font-size: 1.2rem;
             margin: 10px 0 0;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ff4757;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .dashboard-nav a:hover {
+            color: #ffe3e3;
         }
 
         .messages-container {
@@ -44,26 +65,40 @@
             font-size: 2rem;
             color: #ff4757;
             margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ff4757;
+            padding-bottom: 10px;
         }
 
         .message {
             border-bottom: 1px solid #ddd;
-            padding: 10px 0;
+            padding: 15px 0;
             cursor: pointer;
             transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .message:hover {
-            background-color: #f1f1f1;
+            background-color: #f8d7da;
         }
 
         .message:last-child {
             border-bottom: none;
         }
 
+        .message img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
         .message .message-details {
             display: flex;
             justify-content: space-between;
+            width: 100%;
         }
 
         .message .message-details h3 {
@@ -75,25 +110,34 @@
         .message .message-details p {
             margin: 5px 0 0;
             color: #555;
+            flex-grow: 1;
         }
 
         .message .message-details .timestamp {
             font-size: 0.9rem;
             color: #aaa;
+            white-space: nowrap;
         }
 
         .full-message {
             display: none;
             margin-top: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .full-message h3 {
             margin-top: 0;
             color: #ff4757;
+            border-bottom: 2px solid #ff4757;
+            padding-bottom: 10px;
         }
 
         .full-message p {
             color: #555;
+            margin-bottom: 10px;
         }
 
         .back-link {
@@ -130,6 +174,8 @@
             color: white;
             text-align: center;
             padding: 20px 0;
+            margin-top: 40px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
         footer p {
@@ -143,21 +189,35 @@
         <p>Your Messages</p>
     </header>
 
+    <div class="dashboard-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="encounter.html">Encounter</a>
+        <a href="profile.html">Profile</a>
+        <a href="settings.html">Settings</a>
+        <a href="notifications.html">Notifications</a>
+    </div>
+
     <div class="messages-container">
         <h2>Messages</h2>
 
         <div class="message" onclick="openMessage(1)">
+            <img src="jane-doe.jpg" alt="Jane Doe">
             <div class="message-details">
-                <h3>Jane Doe</h3>
-                <p>Hello, I saw your profile and I'd love to connect!</p>
+                <div>
+                    <h3>Jane Doe</h3>
+                    <p>Hello, I saw your profile and I'd love to connect!</p>
+                </div>
                 <span class="timestamp">2 hours ago</span>
             </div>
         </div>
 
         <div class="message" onclick="openMessage(2)">
+            <img src="emily-smith.jpg" alt="Emily Smith">
             <div class="message-details">
-                <h3>Emily Smith</h3>
-                <p>Hi! Let's chat and get to know each other.</p>
+                <div>
+                    <h3>Emily Smith</h3>
+                    <p>Hi! Let's chat and get to know each other.</p>
+                </div>
                 <span class="timestamp">1 day ago</span>
             </div>
         </div>

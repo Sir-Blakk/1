@@ -19,11 +19,84 @@
             color: white;
             padding: 20px 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
             margin: 0;
             font-size: 2.5rem;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ff4757;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .dashboard-nav a:hover {
+            color: #ffe3e3;
+        }
+
+        .filter-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-container form {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .filter-container label {
+            font-weight: 600;
+            flex-basis: 100%;
+        }
+
+        .filter-container input,
+        .filter-container select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            flex-grow: 1;
+            max-width: 48%;
+        }
+
+        .filter-container button {
+            padding: 10px 20px;
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            align-self: flex-end;
+        }
+
+        .filter-container button:hover {
+            background-color: #ff4757;
         }
 
         .users-container {
@@ -33,31 +106,34 @@
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .user-card {
-            background-color: #f1f1f1;
+            background-color: white;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            text-align: center;
             padding: 15px;
-            display: flex;
-            align-items: center;
+            transition: transform 0.3s;
         }
-        
 
         .user-card img {
             width: 100px;
             height: 100px;
             object-fit: cover;
             border-radius: 50%;
-            margin-right: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
         }
 
         .user-card h3 {
             margin: 0;
             font-size: 1.5rem;
+            color: #ff4757;
         }
 
         .user-card p {
@@ -65,64 +141,43 @@
             color: #555;
         }
 
+        .user-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .user-card img:hover {
+            transform: scale(1.1);
+        }
+
         footer {
             background-color: #2f3542;
             color: white;
             text-align: center;
             padding: 20px 0;
-        }
-        .filter-container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        #filter-form {
-            display: grid;
-            gap: 10px;
-        }
-
-        #filter-form label {
-            font-weight: 600;
-        }
-
-        #filter-form input,
-        #filter-form select {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-        }
-
-        #filter-form button {
-            padding: 10px;
-            background-color: #ff6b81;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        #filter-form button:hover {
-            background-color: #ff4757;
+        footer p {
+            margin: 0;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Black Love</h1>
-        <p>Users</p>
+        <p>Find Your Perfect Match</p>
     </header>
 
-    <div class="users-container" id="users-container">
-        <!-- User cards will be populated here -->
+    <div class="dashboard-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html">Profile</a>
+        <a href="messages.html">Messages</a>
+        <a href="settings.html">Settings</a>
+        <a href="notifications.html">Notifications</a>
     </div>
-    <div class="filter-container" id="filter-container">
+
+    <div class="filter-container">
         <form id="filter-form">
             <label for="age-min">Age Min:</label>
             <input type="number" id="age-min" placeholder="Min Age" min="0">
@@ -144,7 +199,10 @@
             <button type="submit">Apply Filters</button>
         </form>
     </div>
-    
+
+    <div class="users-container" id="users-container">
+        <!-- User cards will be populated here -->
+    </div>
 
     <footer>
         <p>&copy; 2024 Black Love. All Rights Reserved.</p>

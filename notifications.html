@@ -19,6 +19,7 @@
             color: white;
             padding: 20px 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
@@ -29,6 +30,26 @@
         header p {
             font-size: 1.2rem;
             margin: 10px 0 0;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ff4757;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .dashboard-nav a:hover {
+            color: #ffe3e3;
         }
 
         .notifications-container {
@@ -44,43 +65,51 @@
             font-size: 2rem;
             color: #ff4757;
             margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ff4757;
+            padding-bottom: 10px;
         }
 
-        .notifications-container .notification {
+        .notification {
             border-bottom: 1px solid #ddd;
-            padding: 10px 0;
+            padding: 15px 0;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .notifications-container .notification:hover {
+        .notification:hover {
             background-color: #f1f1f1;
+            transform: translateX(5px);
         }
 
-        .notifications-container .notification:last-child {
+        .notification:last-child {
             border-bottom: none;
         }
 
-        .notifications-container .notification .notification-details {
+        .notification-details {
             flex: 1;
+            padding-right: 20px;
         }
 
-        .notifications-container .notification .notification-details h3 {
+        .notification-details h3 {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #333;
         }
 
-        .notifications-container .notification .notification-details p {
+        .notification-details p {
             margin: 5px 0 0;
             color: #555;
         }
 
-        .notifications-container .notification .notification-details .timestamp {
+        .timestamp {
             font-size: 0.9rem;
             color: #aaa;
+            display: block;
+            margin-top: 5px;
         }
 
         .view-more {
@@ -88,8 +117,11 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            margin-top: 10px;
-            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        .view-more:hover {
+            color: #e84118;
         }
 
         footer {
@@ -97,6 +129,8 @@
             color: white;
             text-align: center;
             padding: 20px 0;
+            margin-top: 20px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
         footer p {
@@ -110,6 +144,14 @@
         <p>Notifications</p>
     </header>
 
+    <div class="dashboard-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="encounter.html">Encounter</a>
+        <a href="messages.html">Messages</a>
+        <a href="settings.html">Settings</a>
+        <a href="profile.html">Profile</a>
+    </div>
+
     <div class="notifications-container">
         <h2>Your Notifications</h2>
         <div class="notification" onclick="openNotification('match.html')">
@@ -118,7 +160,7 @@
                 <p>You have a new match with Jane Doe.</p>
                 <span class="timestamp">1 hour ago</span>
             </div>
-            <a href="#" class="view-more">View</a>
+            <a href="match.html" class="view-more">View</a>
         </div>
         <div class="notification" onclick="openNotification('profile-view.html')">
             <div class="notification-details">
@@ -126,7 +168,7 @@
                 <p>Emily Smith viewed your profile.</p>
                 <span class="timestamp">3 hours ago</span>
             </div>
-            <a href="#" class="view-more">View</a>
+            <a href="profile-view.html" class="view-more">View</a>
         </div>
     </div>
 

@@ -19,6 +19,7 @@
             color: white;
             padding: 20px 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
@@ -29,6 +30,26 @@
         header p {
             font-size: 1.2rem;
             margin: 10px 0 0;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ff4757;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .dashboard-nav a:hover {
+            color: #ffe3e3;
         }
 
         .settings-container {
@@ -45,6 +66,8 @@
             color: #ff4757;
             margin-bottom: 20px;
             text-align: center;
+            border-bottom: 2px solid #ff4757;
+            padding-bottom: 10px;
         }
 
         .settings-form {
@@ -65,6 +88,13 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             width: 100%;
+            transition: border-color 0.3s;
+        }
+
+        .settings-form input[type="text"]:focus, 
+        .settings-form select:focus {
+            border-color: #ff4757;
+            outline: none;
         }
 
         .settings-form input[type="checkbox"] {
@@ -90,7 +120,6 @@
             padding: 10px 20px;
             background-color: #ff4757;
             color: white;
-            text-decoration: none;
             border: none;
             border-radius: 5px;
             font-size: 1rem;
@@ -111,6 +140,7 @@
             text-align: center;
             padding: 20px 0;
             margin-top: 20px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
         footer p {
@@ -163,6 +193,14 @@
         <h1>Black Love</h1>
         <p>Settings</p>
     </header>
+
+    <div class="dashboard-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html">Profile</a>
+        <a href="encounter.html">Encounter</a>
+        <a href="messages.html">Messages</a>
+        <a href="notifications.html">Notifications</a>
+    </div>
 
     <div class="settings-container">
         <h2>Account Settings</h2>
