@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,138 +11,213 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
+            background-color: #f4f4f9;
             color: #333;
         }
 
         header {
-            background-color: #ff6b81;
+            background-color: #ff4757;
             color: white;
-            padding: 20px 0;
+            padding: 30px 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin: 10px 0 0;
+            font-weight: 300;
         }
 
-        nav {
+        .dashboard-nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #ff4757;
-            padding: 10px 20px;
+            justify-content: center;
+            background-color: #ff6b81;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
-        .nav-left {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-right {
-            margin-left: auto;
-        }
-
-        .nav-btn {
-            background-color: #ff4757;
+        .dashboard-nav a {
             color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            text-align: center;
+            text-decoration: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
             border-radius: 5px;
-            margin-left: 10px;
+            margin: 0 10px;
         }
 
-        .nav-btn:hover {
-            background-color: #e84118;
+        .dashboard-nav a:hover {
+            background-color: #ff4757;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .profile-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
             background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background: url('heart-icon.png') no-repeat center;
+            background-size: cover;
+            opacity: 0.2;
         }
 
         .profile-container h2 {
-            text-align: center;
             margin-bottom: 20px;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #ff4757;
-        }
-
-        .profile-info {
-            margin-bottom: 20px;
+            font-weight: 600;
         }
 
         .profile-info h3 {
-            margin: 0;
-            font-size: 1.5rem;
+            margin: 10px 0;
+            font-size: 2rem;
             color: #333;
+            font-weight: 500;
         }
 
         .profile-info p {
-            margin: 5px 0;
-            color: #555;
+            margin: 10px 0;
+            color: #777;
+            font-size: 1.2rem;
+            font-weight: 300;
         }
 
         .profile-info img {
-            max-width: 100px;
-            margin: 10px 0;
+            max-width: 180px;
+            height: auto;
+            margin: 20px 0;
             border-radius: 50%;
+            border: 5px solid #ff6b81;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-info img:hover {
+            transform: scale(1.05);
         }
 
         .edit-profile-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
+            display: inline-block;
+            padding: 15px 30px;
             background-color: #ff4757;
             color: white;
-            text-align: center;
-            border-radius: 5px;
-            font-size: 1.2rem;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            font-weight: 600;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .edit-profile-btn:hover {
             background-color: #e84118;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #f4f4f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            line-height: 1;
         }
 
         footer {
             background-color: #2f3542;
             color: white;
             text-align: center;
-            padding: 20px 0;
+            padding: 25px 0;
+            margin-top: 40px;
         }
 
         footer p {
             margin: 0;
+            font-size: 1rem;
+            font-weight: 300;
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Black Love</h1>
         <p>Your Profile</p>
     </header>
-        
+
+    <div class="dashboard-nav">
+        <a href="profile.html">Profile</a>
+        <a href="encounter.html">Encounter</a>
+        <a href="messages.html">Messages</a>
+        <a href="settings.html">Settings</a>
+        <a href="notifications.html">Notifications</a>
+    </div>
 
     <div class="profile-container">
         <h2>Profile Details</h2>
         <div class="profile-info" id="profile-info">
-            <h3 id="user-name"></h3>
+            <h3 id="user-name">John Doe</h3>
             <img id="profile-picture" src="default-profile.png" alt="Profile Picture">
             <p id="user-bio">This is a sample bio.</p>
             <p id="user-interests">Interests: Hiking, Reading, Traveling</p>
@@ -149,30 +225,55 @@
         <a href="edit-profile.html" class="edit-profile-btn">Edit Profile</a>
     </div>
 
-
     <footer>
         <p>&copy; 2024 Black Love. All Rights Reserved.</p>
     </footer>
 
+    <!-- Modal for full-size image -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <img id="modalImage" src="default-profile.png" alt="Full-Size Image">
+            <button class="close-btn" id="closeModal">&times;</button>
+        </div>
+    </div>
+
     <script>
-        // Simulate fetching user data (this could be from a backend or localStorage)
-        const userProfile = {
-            name: "John Doe",
-            bio: "This is a sample bio.",
-            interests: "Hiking, Reading, Traveling",
-            profilePicture: "profile-picture.jpg" // Replace with actual image path
-        };
+        // Load profile data from localStorage
+        const profileData = JSON.parse(localStorage.getItem('profileData'));
 
         // Populate the UI with the user's profile data
-        document.getElementById('user-name').textContent = userProfile.name;
-        document.getElementById('user-bio').textContent = userProfile.bio;
-        document.getElementById('user-interests').textContent = `Interests: ${userProfile.interests}`;
-        document.getElementById('profile-picture').src = userProfile.profilePicture;
+        if (profileData) {
+            document.getElementById('user-name').textContent = profileData.fullName;
+            document.getElementById('user-bio').textContent = profileData.bio;
+            document.getElementById('user-interests').textContent = `Interests: ${profileData.interests.join(', ')}`;
+        }
 
-        function logout() {
-            localStorage.removeItem('loggedIn');
-            window.location.href = 'index.html';
+        // Load the profile picture from localStorage or keep the default
+        const existingPhotos = JSON.parse(localStorage.getItem('existingPhotos')) || [];
+        if (existingPhotos.length > 0) {
+            document.getElementById('profile-picture').src = existingPhotos[0]; // Use the first image as the profile picture
+            document.getElementById('modalImage').src = existingPhotos[0]; // Set the modal image source
+        }
+
+        // Modal functionality
+        const modal = document.getElementById('imageModal');
+        const profilePicture = document.getElementById('profile-picture');
+        const closeModal = document.getElementById('closeModal');
+
+        profilePicture.onclick = function () {
+            modal.style.display = 'flex';
+        }
+
+        closeModal.onclick = function () {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
         }
     </script>
 </body>
+
 </html>

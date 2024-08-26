@@ -45,6 +45,7 @@
             display: flex;
             align-items: center;
         }
+        
 
         .user-card img {
             width: 100px;
@@ -70,9 +71,45 @@
             text-align: center;
             padding: 20px 0;
         }
+        .filter-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
 
-        footer p {
-            margin: 0;
+        #filter-form {
+            display: grid;
+            gap: 10px;
+        }
+
+        #filter-form label {
+            font-weight: 600;
+        }
+
+        #filter-form input,
+        #filter-form select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        #filter-form button {
+            padding: 10px;
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        #filter-form button:hover {
+            background-color: #ff4757;
         }
     </style>
 </head>
@@ -85,6 +122,29 @@
     <div class="users-container" id="users-container">
         <!-- User cards will be populated here -->
     </div>
+    <div class="filter-container" id="filter-container">
+        <form id="filter-form">
+            <label for="age-min">Age Min:</label>
+            <input type="number" id="age-min" placeholder="Min Age" min="0">
+    
+            <label for="age-max">Age Max:</label>
+            <input type="number" id="age-max" placeholder="Max Age" min="0">
+    
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option value="">All Genders</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+    
+            <label for="location">Location:</label>
+            <input type="text" id="location" placeholder="e.g., New York, NY">
+    
+            <button type="submit">Apply Filters</button>
+        </form>
+    </div>
+    
 
     <footer>
         <p>&copy; 2024 Black Love. All Rights Reserved.</p>

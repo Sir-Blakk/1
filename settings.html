@@ -118,8 +118,23 @@
         }
     </style>
     <script>
+        // Function to save settings to localStorage
         function saveSettings(event) {
             event.preventDefault(); // Prevent form from submitting
+
+            // Get the values from the form fields
+            const theme = document.getElementById('theme').value;
+            const notifications = document.getElementById('notifications').checked;
+            const location = document.getElementById('location').value;
+
+            // Save the settings to localStorage
+            const settings = {
+                theme: theme,
+                notifications: notifications,
+                location: location
+            };
+
+            localStorage.setItem('settings', JSON.stringify(settings));
 
             // Simulate saving settings (you can add actual saving logic here)
             alert("Settings saved!");
@@ -127,6 +142,20 @@
             // Redirect to the dashboard page
             window.location.href = "dashboard.html";
         }
+
+        // Function to load settings from localStorage
+        function loadSettings() {
+            const savedSettings = JSON.parse(localStorage.getItem('settings'));
+
+            if (savedSettings) {
+                document.getElementById('theme').value = savedSettings.theme;
+                document.getElementById('notifications').checked = savedSettings.notifications;
+                document.getElementById('location').value = savedSettings.location;
+            }
+        }
+
+        // Load settings when the page is loaded
+        window.onload = loadSettings;
     </script>
 </head>
 <body>

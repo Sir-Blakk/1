@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -135,6 +136,20 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             margin: 5px;
+            position: relative;
+        }
+
+        .remove-photo-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
         }
 
         footer {
@@ -149,6 +164,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Black Love</h1>
@@ -226,7 +242,7 @@
             <input type="file" id="photos" name="photos" multiple accept="image/*">
 
             <div class="existing-photos-container" id="existing-photos-container">
-                <!-- No existing photos -->
+                <!-- Existing photos will be displayed here -->
             </div>
 
             <div class="preview-container" id="preview-container"></div>
@@ -240,19 +256,21 @@
     </footer>
 
     <script>
+        // Function to handle logout
         function logout() {
             localStorage.removeItem('loggedIn');
             window.location.href = 'index.html';
         }
 
-        document.getElementById('photos').addEventListener('change', function(event) {
+        // Preview selected photos before uploading
+        document.getElementById('photos').addEventListener('change', function (event) {
             const previewContainer = document.getElementById('preview-container');
             previewContainer.innerHTML = ''; // Clear any existing previews
 
             const files = event.target.files;
             for (const file of files) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     const img = document.createElement('img');
                     img.src = e.target.result;
                     img.style.width = '150px'; // Set width for preview
@@ -263,21 +281,94 @@
             }
         });
 
-        document.getElementById('edit-profile-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
-
-            // Simulate successful profile update
-            localStorage.setItem('profileUpdated', 'true');
-            window.location.href = 'dashboard.html'; // Redirect to dashboard
-        });
-
-        // Example function to simulate fetching existing profile photos
-        function loadExistingPhotos() {
-            // This would be replaced with a call to the backend to fetch the user's existing photos
+        // Function to remove an existing photo
+        function removePhoto(index) {
+            const existingPhotos = JSON.parse(localStorage.getItem('existingPhotos')) || [];
+            existingPhotos.splice(index, 1);
+            localStorage.setItem('existingPhotos', JSON.stringify(existingPhotos));
+            loadExistingPhotos();
         }
 
-        // Load existing photos when the page loads
-        window.onload = loadExistingPhotos;
+        // Handle form submission
+        document.getElementById('edit-profile-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            const fullName = document.getElementById('full-name').value;
+            const bio = document.getElementById('bio').value;
+            const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
+
+            // Save profile data to localStorage
+            const profileData = {
+                fullName,
+                bio,
+                interests
+            };
+            localStorage.setItem('profileData', JSON.stringify(profileData));
+
+            // Save uploaded photos to localStorage
+            const files = document.getElementById('photos').files;
+            const existingPhotos = JSON.parse(localStorage.getItem('existingPhotos')) || [];
+            for (const file of files) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    existingPhotos.push(e.target.result);
+                    localStorage.setItem('existingPhotos', JSON.stringify(existingPhotos));
+                }
+                reader.readAsDataURL(file);
+            }
+
+            localStorage.setItem('profileUpdated', 'true');
+            // Redirect to profile page after saving data
+            setTimeout(() => {
+                window.location.href = 'profile.html';
+            }, 500);
+        });
+
+        // Function to load existing photos
+        function loadExistingPhotos() {
+            const existingPhotosContainer = document.getElementById('existing-photos-container');
+            existingPhotosContainer.innerHTML = ''; // Clear existing photos
+            const existingPhotos = JSON.parse(localStorage.getItem('existingPhotos')) || [];
+
+            existingPhotos.forEach((photo, index) => {
+                const imgContainer = document.createElement('div');
+                imgContainer.style.position = 'relative';
+
+                const img = document.createElement('img');
+                img.src = photo;
+
+                const removeBtn = document.createElement('button');
+                removeBtn.innerText = 'X';
+                removeBtn.className = 'remove-photo-btn';
+                removeBtn.onclick = function () {
+                    removePhoto(index);
+                };
+
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(removeBtn);
+                existingPhotosContainer.appendChild(imgContainer);
+            });
+        }
+
+        // Function to load existing profile data
+        function loadProfileData() {
+            const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
+            document.getElementById('full-name').value = profileData.fullName || '';
+            document.getElementById('bio').value = profileData.bio || '';
+
+            const interests = profileData.interests || [];
+            const interestOptions = document.getElementById('interests').options;
+            for (const option of interestOptions) {
+                option.selected = interests.includes(option.value);
+            }
+        }
+
+        // Load existing photos and profile data when the page loads
+        window.onload = function () {
+            loadExistingPhotos();
+            loadProfileData();
+        };
     </script>
 </body>
+
 </html>
