@@ -147,38 +147,36 @@
 
     <script>
         document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('error-message');
 
-            errorMessage.textContent = ''; // Clear previous error message
+    errorMessage.textContent = ''; // Clear previous error message
 
-            try {
-                const response = await fetch('http://localhost:3000/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
+    console.log({ email, password }); // Log the input data
 
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(errorText || 'An error occurred');
-                }
-
-                const result = await response.json();
-                console.log(result); // Log the result object to the console for debugging
-
-                if (result.token) {
-                    localStorage.setItem('token', result.token);
-                    window.location.href = 'dashboard.html';
-                } else {
-                    throw new Error(result.message || 'Login failed');
-                }
-            } catch (error) {
-                errorMessage.textContent = error.message;
-            }
+    try {
+        const response = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
         });
+
+        console.log(response.status); // Log the status code
+        const result = await response.json();
+        console.log(result); // Log the result object for debugging
+
+        if (response.ok) {
+            localStorage.setItem('token', result.token);
+            window.location.href = 'dashboard.html';
+        } else {
+            throw new Error(result.message || 'Login failed');
+        }
+    } catch (error) {
+        errorMessage.textContent = error.message;
+    }
+});
     </script>
 </body>
 </html>
