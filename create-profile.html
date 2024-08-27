@@ -83,6 +83,22 @@
             font-size: 1rem;
         }
 
+        .create-profile-container .interest-button {
+            padding: 5px 8px; /* Reduced padding */
+            margin: 3px; /* Adjusted margin */
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.75rem; /* Reduced font size */
+            transition: background 0.3s;
+        }
+
+        .create-profile-container .interest-button:hover {
+            background-color: #e84118;
+        }
+
         .create-profile-container input[type="file"] {
             margin-bottom: 20px;
         }
@@ -104,21 +120,10 @@
         }
 
         .interests-container {
-            margin-bottom: 20px;
-        }
-
-        .interests-container label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 400;
-        }
-
-        .interests-container select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px; /* Adjusted gap */
         }
 
         .preview-container {
@@ -147,6 +152,33 @@
         footer p {
             margin: 0;
         }
+
+        .selected-interests-container {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px; /* Adjusted gap */
+        }
+
+        .selected-interest {
+            background-color: #ff4757;
+            color: white;
+            padding: 3px 4px; /* Reduced padding */
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 3px; /* Adjusted gap */
+            font-size: 0.75rem; /* Reduced font size */
+        }
+
+        .selected-interest button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 0.75rem; /* Reduced font size */
+            line-height: 1;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -157,10 +189,6 @@
     </header>
 
     <nav>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="messages.html">Messages</a>
-        <a href="settings.html">Settings</a>
-        <a href="notifications.html">Notifications</a>
         <a href="login.html" onclick="logout()">Logout</a>
     </nav>
 
@@ -173,73 +201,73 @@
             <label for="bio">Bio</label>
             <textarea id="bio" name="bio" rows="4" required></textarea>
 
-            <label for="interests">Interests</label>
-            <select id="interests" name="interests" multiple required>
-                <!-- Interests options -->
-                <option value="Traveling">Traveling</option>
-                <option value="Cooking">Cooking</option>
-                <option value="Reading">Reading</option>
-                <option value="Hiking">Hiking</option>
-                <option value="Photography">Photography</option>
-                <option value="Music">Music</option>
-                <option value="Yoga">Yoga</option>
-                <option value="Painting">Painting</option>
-                <option value="Gardening">Gardening</option>
-                <option value="Writing">Writing</option>
-                <option value="Film and cinema">Film and cinema</option>
-                <option value="Dancing">Dancing</option>
-                <option value="Volunteering">Volunteering</option>
-                <option value="Fitness and exercise">Fitness and exercise</option>
-                <option value="Video games">Video games</option>
-                <option value="DIY projects">DIY projects</option>
-                <option value="Meditation">Meditation</option>
-                <option value="Sports">Sports</option>
-                <option value="Learning languages">Learning languages</option>
-                <option value="History">History</option>
-                <option value="Technology">Technology</option>
-                <option value="Birdwatching">Birdwatching</option>
-                <option value="Astrology">Astrology</option>
-                <option value="Surfing">Surfing</option>
-                <option value="Crafting">Crafting</option>
-                <option value="Wine tasting">Wine tasting</option>
-                <option value="Animals and pets">Animals and pets</option>
-                <option value="Cooking new recipes">Cooking new recipes</option>
-                <option value="Visiting museums">Visiting museums</option>
-                <option value="Attending live performances">Attending live performances</option>
-                <option value="Knitting or crocheting">Knitting or crocheting</option>
-                <option value="Astronomy">Astronomy</option>
-                <option value="Camping">Camping</option>
-                <option value="Sculpting">Sculpting</option>
-                <option value="Running">Running</option>
-                <option value="Baking">Baking</option>
-                <option value="Martial arts">Martial arts</option>
-                <option value="Geocaching">Geocaching</option>
-                <option value="Collecting (e.g., stamps, coins)">Collecting (e.g., stamps, coins)</option>
-                <option value="Boat sailing">Boat sailing</option>
-                <option value="Cycling">Cycling</option>
-                <option value="Homebrewing">Homebrewing</option>
-                <option value="Calligraphy">Calligraphy</option>
-                <option value="Car restoration">Car restoration</option>
-                <option value="Magic tricks">Magic tricks</option>
-                <option value="Podcasting">Podcasting</option>
-                <!-- Add more options as necessary -->
+            <label for="location">Location</label>
+            <select id="location" name="location" required>
+                <option value="" disabled selected>Select your country</option>
+                <!-- Country options here -->
             </select>
 
-            <label for="photos">Profile Photos</label>
-            <input type="file" id="photos" name="photos" multiple accept="image/*">
+            <label for="interests">Interests</label>
+            <div class="interests-container">
+                <button type="button" class="interest-button" data-interest="Music">Music</button>
+                <button type="button" class="interest-button" data-interest="Movies">Movies</button>
+                <button type="button" class="interest-button" data-interest="Sports">Sports</button>
+                <button type="button" class="interest-button" data-interest="Travel">Travel</button>
+                <button type="button" class="interest-button" data-interest="Cooking">Cooking</button>
+                <button type="button" class="interest-button" data-interest="Reading">Reading</button>
+                <button type="button" class="interest-button" data-interest="Fitness">Fitness</button>
+                <button type="button" class="interest-button" data-interest="Art">Art</button>
+                <button type="button" class="interest-button" data-interest="Photography">Photography</button>
+                <button type="button" class="interest-button" data-interest="Hiking">Hiking</button>
+                <button type="button" class="interest-button" data-interest="Dancing">Dancing</button>
+                <button type="button" class="interest-button" data-interest="Yoga">Yoga</button>
+                <button type="button" class="interest-button" data-interest="Gaming">Gaming</button>
+                <button type="button" class="interest-button" data-interest="Writing">Writing</button>
+                <button type="button" class="interest-button" data-interest="Volunteering">Volunteering</button>
+                <button type="button" class="interest-button" data-interest="Gardening">Gardening</button>
+                <button type="button" class="interest-button" data-interest="Fashion">Fashion</button>
+                <button type="button" class="interest-button" data-interest="Meditation">Meditation</button>
+                <button type="button" class="interest-button" data-interest="Technology">Technology</button>
+                <button type="button" class="interest-button" data-interest="Photography">Photography</button>
+                <button type="button" class="interest-button" data-interest="Theater">Theater</button>
+                <button type="button" class="interest-button" data-interest="Pets">Pets</button>
+                <button type="button" class="interest-button" data-interest="DIY">DIY</button>
+                <button type="button" class="interest-button" data-interest="Nature">Nature</button>
+                <button type="button" class="interest-button" data-interest="Wine">Wine</button>
+                <button type="button" class="interest-button" data-interest="Crafts">Crafts</button>
+                <button type="button" class="interest-button" data-interest="Blogging">Blogging</button>
+                <button type="button" class="interest-button" data-interest="Investing">Investing</button>
+                <button type="button" class="interest-button" data-interest="Astronomy">Astronomy</button>
+                <button type="button" class="interest-button" data-interest="Surfing">Surfing</button>
+                <button type="button" class="interest-button" data-interest="Biking">Biking</button>
+                <button type="button" class="interest-button" data-interest="Skating">Skating</button>
+                <button type="button" class="interest-button" data-interest="Knitting">Knitting</button>
+                <button type="button" class="interest-button" data-interest="Martial Arts">Martial Arts</button>
+                <button type="button" class="interest-button" data-interest="Horse Riding">Horse Riding</button>
+                <button type="button" class="interest-button" data-interest="Board Games">Board Games</button>
+                <button type="button" class="interest-button" data-interest="Travel Blogging">Travel Blogging</button>
+                <button type="button" class="interest-button" data-interest="Scuba Diving">Scuba Diving</button>
+                <button type="button" class="interest-button" data-interest="Karaoke">Karaoke</button>
+                <button type="button" class="interest-button" data-interest="Pilates">Pilates</button>
+            </div>
 
-            <div class="preview-container" id="preview-container"></div>
+            <div id="selected-interests" class="selected-interests-container"></div>
+
+            <label for="photos">Upload Photos</label>
+            <input type="file" id="photos" name="photos" accept="image/*" multiple>
+
+            <div id="preview-container" class="preview-container"></div>
 
             <input type="submit" value="Create Profile">
         </form>
     </div>
 
     <footer>
-        <p>&copy; 2024 Black Love. All Rights Reserved.</p>
+        <p>&copy; 2024 Black Love. All rights reserved.</p>
     </footer>
 
     <script>
-        // Function to handle logout
+        // Logout function
         function logout() {
             localStorage.removeItem('loggedIn');
             window.location.href = 'index.html';
@@ -250,52 +278,61 @@
             const previewContainer = document.getElementById('preview-container');
             previewContainer.innerHTML = ''; // Clear any existing previews
 
-            const files = event.target.files;
-            for (const file of files) {
+            for (let i = 0; i < event.target.files.length; i++) {
+                const file = event.target.files[i];
                 const reader = new FileReader();
+
                 reader.onload = function (e) {
                     const img = document.createElement('img');
                     img.src = e.target.result;
-                    img.style.width = '150px'; // Set width for preview
-                    img.style.margin = '5px'; // Space between images
                     previewContainer.appendChild(img);
-                }
+                };
+
                 reader.readAsDataURL(file);
             }
         });
 
-        // Handle form submission
-        document.getElementById('create-profile-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
+        // Handle interest selection
+        const interestButtons = document.querySelectorAll('.interest-button');
+        const selectedInterestsContainer = document.getElementById('selected-interests');
+        const selectedInterests = new Set();
 
-            const fullName = document.getElementById('full-name').value;
-            const bio = document.getElementById('bio').value;
-            const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
+        interestButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const interest = this.getAttribute('data-interest');
 
-            // Save profile data to localStorage
-            const profileData = {
-                fullName,
-                bio,
-                interests
-            };
-            localStorage.setItem('profileData', JSON.stringify(profileData));
-
-            // Save uploaded photos to localStorage
-            const files = document.getElementById('photos').files;
-            const photoUrls = [];
-            for (const file of files) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    photoUrls.push(e.target.result);
-                    localStorage.setItem('photoUrls', JSON.stringify(photoUrls));
+                if (selectedInterests.size >= 10 && !selectedInterests.has(interest)) {
+                    alert('You can select up to 10 interests only.');
+                    return;
                 }
-                reader.readAsDataURL(file);
-            }
 
-            // Redirect to profile page after saving data
-            setTimeout(() => {
-                window.location.href = 'profile.html';
-            }, 500);
+                if (selectedInterests.has(interest)) {
+                    return;
+                }
+
+                selectedInterests.add(interest);
+
+                const interestSpan = document.createElement('span');
+                interestSpan.textContent = interest;
+                interestSpan.classList.add('selected-interest');
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = '×';
+                removeButton.onclick = function () {
+                    selectedInterests.delete(interest);
+                    interestSpan.remove();
+                };
+
+                interestSpan.appendChild(removeButton);
+                selectedInterestsContainer.appendChild(interestSpan);
+            });
+        });
+
+        // Form submission event
+        document.getElementById('create-profile-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Add your form submission logic here
         });
     </script>
 </body>

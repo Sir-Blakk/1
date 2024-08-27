@@ -121,7 +121,6 @@
         <a href="index.html">Home</a>
         <a href="register.html">Sign Up</a>
         <a href="login.html">Login</a>
-        <!-- Dashboard link is not shown here -->
     </nav>
 
     <div class="register-container">
@@ -148,13 +147,27 @@
         document.getElementById('register-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
 
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+
+            // Check if email is already registered
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+            const emailExists = registeredUsers.some(user => user.email === email);
+
+            if (emailExists) {
+                alert('This email is already registered. Please use a different email or log in.');
+                return;
+            }
 
             // Check if password meets criteria
             if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
                 alert('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.');
                 return;
             }
+
+            // Register the new user
+            registeredUsers.push({ email, password });
+            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
 
             // Simulate successful registration
             localStorage.setItem('loggedIn', 'true');
