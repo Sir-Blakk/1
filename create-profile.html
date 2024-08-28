@@ -179,6 +179,24 @@
             line-height: 1;
             cursor: pointer;
         }
+        /* Add custom styles for the "What Are You Looking For" section */
+        .create-profile-container .looking-for-container {
+            margin-bottom: 20px;
+        }
+
+        .create-profile-container .looking-for-container label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .create-profile-container .looking-for-container select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 
@@ -403,7 +421,7 @@
             </select>
             </select>
 
-            <label for="interests">Interests</label>
+            <label for="interests">Interests and Hobbies</label>
             <div class="interests-container">
                 <button type="button" class="interest-button" data-interest="Music">Music</button>
                 <button type="button" class="interest-button" data-interest="Movies">Movies</button>
@@ -448,6 +466,19 @@
             </div>
 
             <div id="selected-interests" class="selected-interests-container"></div>
+
+            <!-- New "What Are You Looking For" section -->
+            <div class="looking-for-container">
+                <label for="looking-for">What Are You Looking For?</label>
+                <select id="looking-for" name="looking-for" required>
+                    <option value="">Select an option</option>
+                    <option value="friendship">Friendship</option>
+                    <option value="casual-dating">Casual Dating</option>
+                    <option value="long-term-relationship">Long-Term Relationship</option>
+                    <option value="marriage">Marriage</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
 
             <label for="photos">Upload Photos</label>
             <input type="file" id="photos" name="photos" accept="image/*" multiple>
@@ -528,8 +559,11 @@
         document.getElementById('create-profile-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            // Add your form submission logic here
+            // Display an alert when the form is submitted
+            alert('Profile created successfully!');
+            window.location.href = 'dashboard.html';
         });
+        
     </script>
 </body>
 
