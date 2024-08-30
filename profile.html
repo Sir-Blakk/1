@@ -21,7 +21,6 @@
             padding: 30px 0;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
         }
 
         header h1 {
@@ -36,29 +35,24 @@
             margin: 10px 0 0;
             font-weight: 300;
         }
-
         .dashboard-nav {
             display: flex;
             justify-content: center;
-            background-color: #ff6b81;
-            padding: 15px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            background-color: #ff4757;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .dashboard-nav a {
             color: white;
+            margin: 0 15px;
             text-decoration: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            transition: background 0.3s ease;
-            border-radius: 5px;
-            margin: 0 10px;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
         .dashboard-nav a:hover {
-            background-color: #ff4757;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #ffe3e3;
         }
 
         .profile-container {
@@ -68,21 +62,6 @@
             background-color: white;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
-            text-align: center;
-            position: relative;
-        }
-
-        .profile-container::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 100px;
-            background: url('heart-icon.png') no-repeat center;
-            background-size: cover;
-            opacity: 0.2;
         }
 
         .profile-container h2 {
@@ -90,120 +69,61 @@
             font-size: 2.5rem;
             color: #ff4757;
             font-weight: 600;
+            text-align: center;
         }
 
-        .profile-info h3 {
-            margin: 10px 0;
-            font-size: 2rem;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .profile-info p {
-            margin: 10px 0;
-            color: #777;
-            font-size: 1.2rem;
-            font-weight: 300;
+        .profile-info {
+            text-align: center;
         }
 
         .profile-info img {
-            max-width: 180px;
-            height: auto;
-            margin: 20px 0;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            border: 5px solid #ff6b81;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            object-fit: cover;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .profile-info img:hover {
-            transform: scale(1.05);
+        .profile-info h3 {
+            margin-bottom: 15px;
+            font-size: 2rem;
+            color: #333;
+            font-weight: 600;
         }
 
-        .edit-profile-btn {
+        .profile-info p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .profile-info .edit-btn {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 10px 20px;
             background-color: #ff4757;
             color: white;
             border-radius: 30px;
-            font-size: 1.3rem;
+            font-size: 1rem;
             font-weight: 600;
+            text-align: center;
             text-decoration: none;
             transition: background 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
-        .edit-profile-btn:hover {
+        .profile-info .edit-btn:hover {
             background-color: #e84118;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            overflow: hidden;
-            border-radius: 10px;
-            background-color: #f4f4f9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff4757;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            line-height: 1;
-        }
-
-        footer {
-            background-color: #2f3542;
-            color: white;
-            text-align: center;
-            padding: 25px 0;
-            margin-top: 40px;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 300;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Black Love</h1>
-        <p>Your Profile</p>
+        <h1>Your Profile</h1>
+        <p>Welcome to your dashboard</p>
     </header>
 
     <div class="dashboard-nav">
@@ -215,25 +135,15 @@
     </div>
 
     <div class="profile-container">
-        <h2>Profile Details</h2>
+        <h2>Profile Information</h2>
         <div class="profile-info" id="profile-info">
             <h3 id="user-name">John Doe</h3>
             <img id="profile-picture" src="default-profile.png" alt="Profile Picture">
             <p id="user-bio">This is a sample bio.</p>
+            <p id="user-location">Location: Sample Location</p>
+            <p id="user-looking-for">Looking for: Serious Relationship</p>
             <p id="user-interests">Interests: Hiking, Reading, Traveling</p>
-        </div>
-        <a href="edit-profile.html" class="edit-profile-btn">Edit Profile</a>
-    </div>
-
-    <footer>
-        <p>&copy; 2024 Black Love. All Rights Reserved.</p>
-    </footer>
-
-    <!-- Modal for full-size image -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <img id="modalImage" src="default-profile.png" alt="Full-Size Image">
-            <button class="close-btn" id="closeModal">&times;</button>
+            <a href="edit-profile.html" class="edit-btn">Edit Profile</a>
         </div>
     </div>
 
@@ -241,37 +151,19 @@
         // Load profile data from localStorage
         const profileData = JSON.parse(localStorage.getItem('profileData'));
 
-        // Populate the UI with the user's profile data
         if (profileData) {
+            // Populate the UI with the user's profile data
             document.getElementById('user-name').textContent = profileData.fullName;
             document.getElementById('user-bio').textContent = profileData.bio;
             document.getElementById('user-interests').textContent = `Interests: ${profileData.interests.join(', ')}`;
+            document.getElementById('user-location').textContent = `Location: ${profileData.location}`;
+            document.getElementById('user-looking-for').textContent = `Looking for: ${profileData.whatAreYouLookingFor}`;
         }
 
         // Load the profile picture from localStorage or keep the default
         const existingPhotos = JSON.parse(localStorage.getItem('existingPhotos')) || [];
         if (existingPhotos.length > 0) {
-            document.getElementById('profile-picture').src = existingPhotos[0]; // Use the first image as the profile picture
-            document.getElementById('modalImage').src = existingPhotos[0]; // Set the modal image source
-        }
-
-        // Modal functionality
-        const modal = document.getElementById('imageModal');
-        const profilePicture = document.getElementById('profile-picture');
-        const closeModal = document.getElementById('closeModal');
-
-        profilePicture.onclick = function () {
-            modal.style.display = 'flex';
-        }
-
-        closeModal.onclick = function () {
-            modal.style.display = 'none';
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
+            document.getElementById('profile-picture').src = existingPhotos[0];
         }
     </script>
 </body>
